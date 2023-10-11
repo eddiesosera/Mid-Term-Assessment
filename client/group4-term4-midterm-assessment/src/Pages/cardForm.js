@@ -63,7 +63,7 @@ export const CardForm = ({ fields, buttonTitle, buttonFunction, productId, produ
                     )
                 })
             }
-            <button onClick={e => { buttonFunction === "add" ? addProduct() : updateProduct() }}>
+            <button className='button' onClick={e => { buttonFunction === "add" ? addProduct() : updateProduct() }}>
                 {
                     buttonFunction === "add" ? "Add Product" : "Update Product"
                 }

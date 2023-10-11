@@ -83,16 +83,15 @@ function Card({ product }) {
     // };
 
     return (
-        <div>
-            <div style={{ display: 'flex', gap: '20px' }}>
-
+        <div style={{ background: "white", padding: '15px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 <img style={{ width: '50px', height: '50px' }} src={product?.image} />
-                <h3>{product?.name}</h3>
-                <p>Car Make: {product?.carMake}</p>
-                <p>Car Model: {product?.carModel}</p>
-                <p>Chassis Number: {product?.chassisNumber}</p>
-                <p>Year: {product?.year}</p>
-                <p>Part ID: {product?.partId}</p>
+                <div>{product?.name}</div>
+                <div>Car Make: {product?.carMake}</div>
+                <div>Car Model: {product?.carModel}</div>
+                <div>Chassis Number: {product?.chassisNumber}</div>
+                <div>Year: {product?.year}</div>
+                <div>Part ID: {product?.partId}</div>
 
                 {/* {isEditing ? ( */}
                 {/* <button onClick={handleSaveClick}>Save</button> */}
