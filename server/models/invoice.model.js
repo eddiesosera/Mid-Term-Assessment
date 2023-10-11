@@ -14,4 +14,4 @@ const InvoiceSchema = mongoose.Schema({
     }]
 });
 
-module.exports = mongoose.model("Product", InvoiceSchema)
+module.exports = mongoose.model("Invoice", InvoiceSchema)

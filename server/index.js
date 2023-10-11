@@ -32,4 +32,4 @@ mongoose.connect(
 
 // Ports
 const PORT = process.env.PORT || 5500
-app.listen(PORT, () => { console.log("Listening to PORT") })
+app.listen(PORT, () => { console.log(`Listening to PORT ${PORT}`) })

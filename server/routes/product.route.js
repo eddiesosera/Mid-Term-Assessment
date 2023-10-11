@@ -21,4 +21,39 @@ router.get("/api/getProducts", async (req, res) => {
     res.json(findProducts)
 });
 
+// Get Single Product
+router.get("/api/getProduct/:id", async (req, res) => {
+    const findProduct = await ProductSchema.findById(req.params.id);
+    res.json(findProduct);
+});
+
+// Update Single Product
+router.patch("/api/updateProduct/:id", async (req, res) => {
+    try {
+        // Create an object containing the fields to update (excluding _id)
+        const updatedFields = { ...req.body };
+        delete updatedFields._id; // Remove _id if it's present in the request body
+
+        // Update the Product document by ID
+        const result = await ProductSchema.updateOne({ _id: req.params.id }, { $set: updatedFields });
+
+        if (result.nModified === 0) {
+            return res.status(404).json({ error: "Product not found or no changes made." });
+        }
+
+        res.json({ message: "Product updated successfully." });
+    }
+    catch {
+        res.status(500).json({ error: "Error updating the Answer." });
+    }
+
+});
+
+// Delete Product
+router.delete("/api/deleteProduct/:id", async (req, res) => {
+    await ProductSchema.findByIdAndDelete(req.params.id)
+        .then(response => res.json(response))
+        .catch(error => res.status(500).json(error));
+});
+
 module.exports = router

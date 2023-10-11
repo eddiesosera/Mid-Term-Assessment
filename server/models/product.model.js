@@ -11,7 +11,7 @@ const ProductSchema = mongoose.Schema({
         type: String
     },
     chasisNumber: {
-        type: Number
+        type: String
     },
     year: {
         type: Number
