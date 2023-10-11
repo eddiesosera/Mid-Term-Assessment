@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const CardForm = ({ fields, buttonTitle, buttonFunction, getFormData }) => {
+export const CardForm = ({ fields, buttonTitle, buttonFunction, productId, productValues }) => {
 
     const [formObj, setFormObj] = useState({});
 
@@ -41,6 +41,7 @@ export const CardForm = ({ fields, buttonTitle, buttonFunction, getFormData }) =
         <div>
             {
                 fields?.map((cardField) => {
+                    const value = cardField?.name
                     return (
                         <input type={cardField.type} placeholder={cardField?.placeholder} onChange={e => { setFormObj({ ...formObj, [cardField?.name]: e.target.value }) }} />
                     )

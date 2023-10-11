@@ -1,15 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCart } from "./cart";
 import { CardForm } from "./cardForm";
+import { UpdateProduct } from "./updateProduct";
 
 function Card({ product }) {
     // const { addToCart } = useCart();
+    const [invoceObj, setInvoiceObj] = useState({})
     const [isEditing, setIsEditing] = useState(false);
     // const [editedProduct, setEditedProduct] = useState({ ...product });
 
+    useEffect(() => {
+        setInvoiceObj({
+            invoice_item: [
+                {
+                    user: 1,
+                    productId: product?._id,
+                    quantity: 1
+                }
+            ]
+        })
+    }, [])
+
     const handleBuyClick = () => {
-        // addToCart(product);
+        let config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:5500/api/createInvoice',
+            headers: {},
+            data: invoceObj
+        };
+
+        axios.request(config)
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     const handleUpdateClick = () => {
@@ -34,23 +62,27 @@ function Card({ product }) {
     // };
 
     return (
-        <div style={{ display: 'flex', gap: '20px' }}>
+        <div>
+            <div style={{ display: 'flex', gap: '20px' }}>
 
-            <img style={{ width: '50px', height: '50px' }} src={product?.image} />
-            <h3>{product?.name}</h3>
-            <p>Car Make: {product?.carMake}</p>
-            <p>Car Model: {product?.carModel}</p>
-            <p>Chassis Number: {product?.chassisNumber}</p>
-            <p>Year: {product?.year}</p>
-            <p>Part ID: {product?.partId}</p>
+                <img style={{ width: '50px', height: '50px' }} src={product?.image} />
+                <h3>{product?.name}</h3>
+                <p>Car Make: {product?.carMake}</p>
+                <p>Car Model: {product?.carModel}</p>
+                <p>Chassis Number: {product?.chassisNumber}</p>
+                <p>Year: {product?.year}</p>
+                <p>Part ID: {product?.partId}</p>
 
-            {/* {isEditing ? ( */}
-            {/* <button onClick={handleSaveClick}>Save</button> */}
-            {/* ) : ( */}
-            <button onClick={e => handleUpdateClick()}>Update</button>
-            {/* )} */}
-            <button onClick={e => handleBuyClick()}>Buy</button>
+                {/* {isEditing ? ( */}
+                {/* <button onClick={handleSaveClick}>Save</button> */}
+                {/* ) : ( */}
+                <button onClick={e => handleUpdateClick()}>Update</button>
+                {/* )} */}
+                <button onClick={e => handleBuyClick()}>Buy</button>
+            </div>
+            {isEditing && <UpdateProduct id={product?._id} productObj={product} />}
         </div>
+
     );
 }
 
