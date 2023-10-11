@@ -4,6 +4,7 @@
   "description": "A React and Express.js fullstack app",
   "main": "index.js",
   "scripts": {
+    "dev":"nodemon index.js",
     "test": "test"
   },
   "author": "Bladen, CS, Eddie, Marine",

@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect } from 'react';
+import { Routes, Route, NavLink } from 'react-router-dom';
+import Home from 'client/group4-term4-midterm-assessment/src/Pages/home.js';
+import { NavBar } from 'client/group4-term4-midterm-assessment/src/Elements/navbar.js';
+// require('dotenv/config')
+
+
 
 function App() {
+  const isLoggedIn = sessionStorage.getItem("loggedIn")
+  useEffect(() => {
+    if (!isLoggedIn || isLoggedIn === "") {
+      sessionStorage.setItem("loggedIn", false)
+    }
+  })
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      {/* <NavLink to={`/user/1`}>user  </NavLink>
+      |
+      <NavLink to={`/questions`}>  create questions</NavLink> */}
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
     </div>
   );
 }
