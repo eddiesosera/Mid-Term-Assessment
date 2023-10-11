@@ -83,23 +83,25 @@ function Card({ product }) {
     // };
 
     return (
-        <div style={{ background: "white", padding: '15px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                <img style={{ width: '50px', height: '50px' }} src={product?.image} />
-                <div>{product?.name}</div>
-                <div>Car Make: {product?.carMake}</div>
-                <div>Car Model: {product?.carModel}</div>
-                <div>Chassis Number: {product?.chassisNumber}</div>
-                <div>Year: {product?.year}</div>
-                <div>Part ID: {product?.partId}</div>
+        <div style={{ background: "white", padding: '15px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderRadius: '12px', gap: '20px' }}>
+            <div style={{ display: 'flex', gap: '60px', alignItems: 'center', gap: '20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '20px', width: '100%' }}>
+                    <img style={{ width: '50px', height: '50px', borderRadius: '8px' }} src={product?.image} />
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+                        <div>{product?.name}</div>
+                        <div>Car Make: {product?.carMake}</div>
+                        <div>Car Model: {product?.carModel}</div>
+                        <div>Chassis Number: {product?.chassisNumber}</div>
+                        <div>Year: {product?.year}</div>
+                        <div>Part ID: {product?.partId}</div>
+                    </div>
+                </div>
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    <button onClick={e => handleUpdateClick()}>Update</button>
+                    <button onClick={e => handleBuyClick()}>Buy</button>
+                    <button onClick={e => handleDeleteClick()}>Delete</button>
+                </div>
 
-                {/* {isEditing ? ( */}
-                {/* <button onClick={handleSaveClick}>Save</button> */}
-                {/* ) : ( */}
-                <button onClick={e => handleUpdateClick()}>Update</button>
-                {/* )} */}
-                <button onClick={e => handleBuyClick()}>Buy</button>
-                <button onClick={e => handleDeleteClick()}>Delete</button>
             </div>
             {isEditing && <UpdateProduct id={product} productObj={product} />}
         </div>

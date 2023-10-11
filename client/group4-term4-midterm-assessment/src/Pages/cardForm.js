@@ -54,15 +54,17 @@ export const CardForm = ({ fields, buttonTitle, buttonFunction, productId, produ
 
     return (
 
-        <div>
-            {
-                fields?.map((cardField) => {
-                    const value = cardField?.name
-                    return (
-                        <input type={cardField.type} placeholder={cardField?.placeholder} onChange={e => { setFormObj({ ...formObj, [cardField?.name]: e.target.value }) }} />
-                    )
-                })
-            }
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div style={{ display: 'flex', gap: '20px' }}>
+                {
+                    fields?.map((cardField) => {
+                        const value = cardField?.name
+                        return (
+                            <input type={cardField.type} style={{ width: cardField?.type === "number" ? "90px" : "150px" }} placeholder={cardField?.placeholder} onChange={e => { setFormObj({ ...formObj, [cardField?.name]: e.target.value }) }} />
+                        )
+                    })
+                }
+            </div>
             <button className='button' onClick={e => { buttonFunction === "add" ? addProduct() : updateProduct() }}>
                 {
                     buttonFunction === "add" ? "Add Product" : "Update Product"
