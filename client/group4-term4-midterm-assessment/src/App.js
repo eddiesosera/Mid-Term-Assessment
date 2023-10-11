@@ -9,7 +9,7 @@ import { CartProvider } from "./Pages/cart";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ padding: '20px' }}>
       {/* <CartProvider> */}
 
       <Routes>

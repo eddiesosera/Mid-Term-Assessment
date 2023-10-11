@@ -6,8 +6,8 @@ export const CardForm = ({ fields, buttonTitle, buttonFunction, productId, produ
     const [formObj, setFormObj] = useState({});
 
     useEffect(() => {
-        console.log(formObj)
-    }, [fields, formObj]);
+        console.log(productId)
+    }, [fields, formObj, productValues]);
 
     const addProduct = () => {
 
@@ -32,7 +32,23 @@ export const CardForm = ({ fields, buttonTitle, buttonFunction, productId, produ
     };
 
     const updateProduct = () => {
+        let config = {
+            method: 'patch',
+            maxBodyLength: Infinity,
+            url: `http://localhost:5500/api/updateProduct/${productId?.id?._id}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: formObj
+        };
 
+        axios.request(config)
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
 

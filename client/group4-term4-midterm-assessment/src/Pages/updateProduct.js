@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CardForm } from './cardForm'
 
 export const UpdateProduct = (id, productObj) => {
@@ -44,6 +44,10 @@ export const UpdateProduct = (id, productObj) => {
             placeholder: 'Quantity'
         },
     ]
+
+    useEffect(() => {
+
+    }, [id, productObj])
 
     return (
         <div>

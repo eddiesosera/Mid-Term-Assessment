@@ -19,8 +19,10 @@ function Card({ product }) {
                     quantity: 1
                 }
             ]
-        })
-    }, [])
+        });
+
+        console.log(product)
+    }, [product])
 
     const handleBuyClick = () => {
         let config = {
@@ -43,6 +45,25 @@ function Card({ product }) {
     const handleUpdateClick = () => {
         setIsEditing(true);
     };
+
+    const handleDeleteClick = () => {
+        let config = {
+            method: 'delete',
+            maxBodyLength: Infinity,
+            url: `http://localhost:5500/api/deleteProduct/${product?._id}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        };
+
+        axios.request(config)
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     // const handleSaveClick = () => {
     //     // Send a PUT request to update the product in the database
@@ -79,8 +100,9 @@ function Card({ product }) {
                 <button onClick={e => handleUpdateClick()}>Update</button>
                 {/* )} */}
                 <button onClick={e => handleBuyClick()}>Buy</button>
+                <button onClick={e => handleDeleteClick()}>Delete</button>
             </div>
-            {isEditing && <UpdateProduct id={product?._id} productObj={product} />}
+            {isEditing && <UpdateProduct id={product} productObj={product} />}
         </div>
 
     );
