@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { useCart } from './cart';
+import React from "react";
+import { useCart } from "../CartContext";
 
 function Invoice() {
-    const { cart, clearCart } = useCart();
+    const { cart } = useCart();
 
     return (
         <div>
-            {cart.map(product => (
-                // Display selected products here
-                <div key={product.id}>{product.name}</div>
-            ))}
-            <button onClick={clearCart}>Clear Cart</button>
+            <h1>Invoice</h1>
+            <ul>
+                {cart.map((product) => (
+                    <li key={product._id}>{product.name}</li>
+                ))}
+            </ul>
         </div>
     );
 }
