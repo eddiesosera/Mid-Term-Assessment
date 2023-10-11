@@ -10,15 +10,15 @@ import { CartProvider } from "./Pages/cart";
 function App() {
   return (
     <div className="App">
-    <CartProvider>
-      
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/invoice" element={<Invoice />} />
-          <Route path="/cart" element={<useCart />} />
-        </Routes>
-      
-    </CartProvider>
+      {/* <CartProvider> */}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/invoice" element={<Invoice />} />
+        <Route path="/cart" element={<useCart />} />
+      </Routes>
+
+      {/* </CartProvider> */}
     </div>
   );
 }

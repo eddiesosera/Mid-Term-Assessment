@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const ProductSchema = mongoose.Schema({
+    image: {
+        type: String
+    },
     name: {
         type: String
     },
@@ -18,6 +21,10 @@ const ProductSchema = mongoose.Schema({
     },
     partId: {
         type: String
+    },
+    quantity: {
+        type: Number,
+        default: 50
     }
 });
 
