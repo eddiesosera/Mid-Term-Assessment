@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const CardForm = ({ fields, buttonTitle, buttonFunction, getFormData }) => {
+export const CardForm = ({ fields, buttonTitle, buttonFunction, productId, productValues }) => {
 
     const [formObj, setFormObj] = useState({});
 
     useEffect(() => {
-        console.log(formObj)
-    }, [fields, formObj]);
+        console.log(productId)
+    }, [fields, formObj, productValues]);
 
     const addProduct = () => {
 
@@ -32,7 +32,23 @@ export const CardForm = ({ fields, buttonTitle, buttonFunction, getFormData }) =
     };
 
     const updateProduct = () => {
+        let config = {
+            method: 'patch',
+            maxBodyLength: Infinity,
+            url: `http://localhost:5500/api/updateProduct/${productId?.id?._id}`,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: formObj
+        };
 
+        axios.request(config)
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
 
@@ -41,6 +57,7 @@ export const CardForm = ({ fields, buttonTitle, buttonFunction, getFormData }) =
         <div>
             {
                 fields?.map((cardField) => {
+                    const value = cardField?.name
                     return (
                         <input type={cardField.type} placeholder={cardField?.placeholder} onChange={e => { setFormObj({ ...formObj, [cardField?.name]: e.target.value }) }} />
                     )

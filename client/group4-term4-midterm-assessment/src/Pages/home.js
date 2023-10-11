@@ -79,10 +79,17 @@ function Home() {
                 />
                 <button onClick={handleAddProduct}>Add Product</button>
             </div> */}
+            <h3>New Product</h3>
             <AddProduct />
-            {products.map((product) => (
-                <Card key={product._id} product={product} />
-            ))}
+            <hr />
+            <h3>All Products</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {products.map((product) => (
+                    <Card key={product._id} product={product} />
+                ))}
+            </div>
+            <hr />
+            <h3>Invoices</h3>
         </div>
     );
 }
