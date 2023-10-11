@@ -22,7 +22,7 @@ export const NavBar = () => {
     return (
         <Row xs={1} sm={1} md={1} lg={1} xl={3} xxl={3} className='navBarWrap'>
             <Col className='navBarLeftContainer'>
-                CodeGenius
+                GlenSpares
             </Col>
             <Col className='navBarMidContainer'>
                 <SearchBar />

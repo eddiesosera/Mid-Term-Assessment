@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useCart } from './cart';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Card from "./card";
 
 function Home() {
-    const { cart, addToCart } = useCart();
-
-    const handleBuyClick = product => {
-        addToCart(product);
-    };
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // Fetch products from the API and set them in the state
+        axios.get("/api/products").then((response) => {
+            setProducts(response.data);
+        });
     }, []);
 
     return (
         <div>
-            {products.map(product => (
-                <Card key={product.id} product={product} />
+            {products.map((product) => (
+                <Card key={product._id} product={product} />
             ))}
         </div>
     );
