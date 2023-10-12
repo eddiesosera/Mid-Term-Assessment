@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require('uuid');
 
 const ProductSchema = mongoose.Schema({
     image: {
@@ -20,7 +21,8 @@ const ProductSchema = mongoose.Schema({
         type: Number
     },
     partId: {
-        type: String
+        type: String,
+        default: uuidv4()
     },
     quantity: {
         type: Number,
